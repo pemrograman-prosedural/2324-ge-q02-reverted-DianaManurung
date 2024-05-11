@@ -19,7 +19,7 @@ int main(int argc, char **argv) {
    
     while (1) {
         fgets(input, sizeof(input), stdin);
-        scanf(input, "&s#%[^\n]", input, para);
+        scanf(input, "&s#%s[^\n]", input, para);
         if (strcmp(input, "dorm-empty") == 0) {
         int find = find_dorm(para, num_dorms, dormitories);
             if (find != -1) {
@@ -27,7 +27,7 @@ int main(int argc, char **argv) {
             printf("Error: Dormitory '%s' not found\n", para);
             }
         } else if (strcmp(input, "student-add") == 0) {
-            students[num_students++] = create_student(para);
+            students[num_students++] = print_student(para);
         } else if (strcmp(input, "dorm-add") == 0) {
             dormitories[num_dorms++] = create_dorm(para);
         } else if (strcmp(input, "assign-student") == 0) {

@@ -7,7 +7,7 @@
  * defined here in the corresponding header file.
  *
  */
-struct student_t create_student(char *input)
+struct student_t(char *input)
 {
   struct student_t mhs;
   strcpy(mhs.id, strtok(NULL, "#"));
@@ -73,7 +73,7 @@ void assign_student(struct dorm_t *dorm, struct student_t *mhs, char *nim, char 
   if (msiswa >= 0 && mrama >= 0 && dorm[mrama].capacity != dorm[mrama].residents_num && mhs[msiswa].gender == dorm[mrama].gender)
   {
     strcpy(mhs[msiswa].dorm->name, asrama);
-    drm[mrama].residents_num++;
+    dorm[mrama].residents_num++;
   }
 }
 

@@ -19,7 +19,7 @@ struct student_t
     struct dorm_t *dorm;
 };
 
-struct student_t(char *input);
+struct student_t create_student(char *input);
 void print_student(struct student_t mhs);
 void print_student_detail(struct student_t mhs);
 void assign_student(struct dorm_t *dorm, struct student_t *mhs, char *nim, char *asrama, int stdn, int asrm, int find_id(char *nim, int stdn, struct student_t *mhs), int find_dorm(char *asrama, int asrm, struct dorm_t *dorm));

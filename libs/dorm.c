@@ -21,6 +21,7 @@ struct dorm_t create_dorm(char *input)
     {
         dorm.gender = GENDER_FEMALE;
     }
+    dorm.residents_num = 0;
     return dorm;
 }
 
@@ -58,5 +59,5 @@ int find_dorm(char *asrama, int asrm, struct dorm_t *dorm)
             find_dorm = a;
         }
     }
-    return find dorm;
+    return find_dorm;
 }
