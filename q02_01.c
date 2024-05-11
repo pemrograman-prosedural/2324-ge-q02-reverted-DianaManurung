@@ -66,7 +66,25 @@ int main(int argc, char **argv) {
             printstudents(student, showalldorm[temp4])
             temp4++
         }
+            token = strtok(NULL, "#");
+            strcpy(mhs.id, token);
+            token = strtok(NULL, "#");
+            strcpy(mhs.name, token);
+            token = strtok(NULL, "#");
+            strcpy(mhs.year, token)
+        
+            if (strcmp("male", token) == 0)
+            {
+                student[temp_size_student] = create_student(temp_id, temp_name, temp_year, GENDER_MALE);
+                temp_size_student++;
+                }
+                else
+                {
+                student[temp_size_student] = create_student(temp_id, temp_name, temp_year, GENDER_FEMALE);
+                temp_size_student++;
+            }
+
+        }
     }
     }
     return 0;
-}
