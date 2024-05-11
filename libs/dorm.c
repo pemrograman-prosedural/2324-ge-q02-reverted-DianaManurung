@@ -35,3 +35,28 @@ void print_dorm(struct dorm_t dorm)
         printf("female\n");
     }
 }
+void print_dorm_detail(struct dorm_t dorm)
+{
+    printf("%s|%hu|", dorm.name, dorm.capacity);
+     if (dorm.gender == GENDER_MALE)
+    {
+        printf("male|");
+    } else if (dorm.gender == GENDER_FEMALE)
+    {
+        printf("female|");
+    }
+    printf("%hu\n", dorm.residents_num);
+}
+
+int find_dorm(char *asrama, int asrm, struct dorm_t *dorm)
+{
+    int find_dorm = -1
+    for (int a = 0; a < asrm; a++)
+    {
+        if (strcmp(asrama, dorm[a].name)== 0)
+        {
+            find_dorm = a;
+        }
+    }
+    return find dorm;
+}

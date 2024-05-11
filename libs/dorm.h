@@ -17,6 +17,9 @@ struct dorm_t
   unsigned short residents_num;
 };
 
-struct dorm_t create_dorm(char *_name, unsigned short _capacity, enum gender_t _gender);
+struct dorm_t create_dorm(char *input);
+void print_dorm(struct dorm_t dorm);
+void print_dorm_detail(struct dorm_t dorm);
+int find_dorm(char *asrama, int asrm, struct dorm_t *dorm);
 
 #endif

@@ -3,88 +3,52 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 #include "./libs/gender.h"
 #include "./libs/dorm.h"
 #include "./libs/student.h"
 
 int main(int argc, char **argv) {
     char input[100];
-    int n = 0;
-    int size = 0;
-    struct dorm_t *dorm = NULL;
-    
-    int p = 0;
-    int size2 = 0;
-    struct student_t *mhs = NULL;
-
-    fflush(stdin);
-    input[0] = '\0';
-    int l = 0;
+    char aksi[100];
+    char para[100];
+    struct student_t students[100];
+    struct dorm_t dormitories[100];
+    int num_students = 0;
+    int num_dorms = 0;
+   
     while (1) {
-        char c = getchar();
-        if (c =='\r');
-        {
-            continue;
-        }
-        if (c == '\n')
-        {
-            break;
-        }
-        input[1] = c;
-        input[++1] = '\0';
-    }
-    if (strcmp(input, "---") == 0)
-    {
-        int i;
-        int temp1 = 0;
-        int temp2 = 0;
-        int temp3 = 0;
-        int temp4 = 0;
-        for (i = 0; i < count_scheduler; i++)
-    {
-        if (strcmp(scheduler[i],"student-print-all")== 0)
-        {
-            printstudents = print_student;
-            printstudents(student, dormshow[temp1]);
-            temp1++
-        }
-        if (strcmp(scheduler[i],"student-print-detail")== 0)
-        {
-            printstudents = print_student_details;
-            printstudents(student, showalldorm[temp2])
-            temp2++
-        }
-        if (strcmp(scheduler[i],"student-print-all")== 0)
-        {
-            printstudents = print_student;
-            printstudents(student, dormshow[temp3]);
-            temp3++
-        }
-        if (strcmp(scheduler[i],"student-print-detail")== 0)
-        {
-            printstudents = print_student_details;
-            printstudents(student, showalldorm[temp4])
-            temp4++
-        }
-            token = strtok(NULL, "#");
-            strcpy(mhs.id, token);
-            token = strtok(NULL, "#");
-            strcpy(mhs.name, token);
-            token = strtok(NULL, "#");
-            strcpy(mhs.year, token)
-        
-            if (strcmp("male", token) == 0)
-            {
-                student[temp_size_student] = create_student(temp_id, temp_name, temp_year, GENDER_MALE);
-                temp_size_student++;
-                }
-                else
-                {
-                student[temp_size_student] = create_student(temp_id, temp_name, temp_year, GENDER_FEMALE);
-                temp_size_student++;
+        fgets(input, sizeof(input), stdin);
+        scanf(input, "&s#%[^\n]", input, para);
+        if (strcmp(input, "dorm-empty") == 0) {
+        int find = find_dorm(para, num_dorms, dormitories);
+            if (find != -1) {
+            } else {
+            printf("Error: Dormitory '%s' not found\n", para);
             }
-
+        } else if (strcmp(input, "student-add") == 0) {
+            students[num_students++] = create_student(para);
+        } else if (strcmp(input, "dorm-add") == 0) {
+            dormitories[num_dorms++] = create_dorm(para);
+        } else if (strcmp(input, "assign-student") == 0) {
+            char id[100];
+            char dorm_name[100];
+            sscanf(para, "%s#%s", id, dorm_name);
+            move_student(dormitories, students, id, dorm_name, num_students, num_dorms, find_id, find_dorm);
+        } else if (strcmp(input, "student-print-all-detail") == 0) {
+            for (int i = 0; i < num_students; ++i) {
+                print_student_detail(students[i]);
+            }
+        } else if (strcmp(input, "dorm-print-all-detail") == 0) {
+            for (int i = 0; i < num_dorms; ++i) {
+                print_dorm_detail(dormitories[i]);
+            }
+        } else if (strcmp(input, "exit") == 0) {
+            break;
+        } else {
+            printf("Error: Invalid input\n");
         }
     }
+
     return 0;
-    }
+}
